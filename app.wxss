@@ -1,0 +1,3 @@
+/* 公共样式 */
+/* 引入icon图标 */
+@import '/static/iconFont/iconFont.wxss'

@@ -1,0 +1,81 @@
+/* pages/index/index.wxss */
+
+/* 轮播图区域 */
+.banners {
+  width: 100%;
+  height: 300rpx;
+}
+.banners image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 导航区域 */
+.navContainer {
+  display: flex;
+}
+.navItem {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navItem .iconfont {
+  width: 100rpx;
+  height: 100rpx;
+  font-size: 50rpx;
+  line-height: 100rpx;
+  background: #f01313;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  margin: 20rpx 0;
+}
+.navItem text {
+  font-size: 26rpx;
+}
+
+/* 推荐歌曲 */
+.recommendCotainer {
+  padding: 0 20rpx;
+}
+.recommendCotainer .title {
+  margin: 20rpx 0;
+  color: #999;
+}
+.more {
+  float: right;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #666;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.recommendScroll {
+  display: flex;
+}
+.scrollItem {
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+.scrollItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.scrollItem text {
+  font-size: 24rpx;
+  /* display: block; */
+  /* 单行文本溢出，省略号代替 */
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+
+  /* 多行文本溢出，省略号代替 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
