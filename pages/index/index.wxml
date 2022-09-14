@@ -43,41 +43,9 @@
     </view>
     <!-- 内容区域 -->
     <scroll-view class="recommendScroll" enable-flex 	scroll-x>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
-      </view>
-      <view class="scrollItem">
-        <image src="/static/images/002.jpg"></image>
-        <text>人活着就是为了解决困难。这才是生命的意义，也是生命的内容</text>
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id">
+        <image src="{{item.picUrl}}"></image>
+        <text>{{item.name}}</text>
       </view>
     </scroll-view>
   </view>
