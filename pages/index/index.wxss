@@ -39,20 +39,10 @@
 .recommendCotainer {
   padding: 0 20rpx;
 }
-.recommendCotainer .title {
-  margin: 20rpx 0;
-  color: #999;
-}
-.more {
-  float: right;
-  padding: 10rpx 20rpx;
-  border: 1rpx solid #666;
-  border-radius: 50rpx;
-  font-size: 24rpx;
-  color: #666;
-}
+
 .recommendScroll {
   display: flex;
+  height: 300rpx;
 }
 .scrollItem {
   width: 200rpx;
@@ -77,5 +67,37 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+/* 排行榜区域 */
+.topContainer {
+  padding: 0 20rpx;
+}
+.topSwiper {
+  height: 440rpx;
+}
+.topSwiper .topSwiperMain {
+  height: 100%;
+  background: #f8f8f8;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  width: 90%;
+}
+.topSwiper .title {
+  line-height: 72rpx;
+}
+.musicItem {
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+.musicItem image {
+  width: 100rpx;
+  height: 100rpx;
+}
+.musicItem .order {
+  width: 100rpx;
+  text-align: center;
 }
 

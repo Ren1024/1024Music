@@ -5,7 +5,8 @@ Page({
   //页面的初始数据
   data: {
     banners:[], //轮播图
-    recommendList:[]  //推荐歌曲列表
+    recommendList:[],  //推荐歌曲列表
+    topList:[], //排行榜
   },
 
   //生命周期函数--监听页面加载
@@ -20,11 +21,32 @@ Page({
     this.setData({
       banners: result.banners
     })
+
     // 请求获取歌曲列表
     result = await request('/personalized')
     this.setData({
       recommendList: result.result
     })
+
+    // 请求获取排行榜数据
+    let index = 0
+    let resultArray = []
+    while(index < 5){
+      result = await request('/top/list',{idx: index++})
+      resultArray.push({
+        name: result.playlist.name,
+        tracks: result.playlist.tracks.slice(0,3)
+      })
+      // 循环内跟新。初次渲染事件短，但多次渲染页面，影响性能
+      this.setData({
+        topList: resultArray
+      })
+    }
+    // console.log(resultArray);
+    // 外部更新，渲染次数少，但网络不好，初次渲染事件有可能白屏
+    // this.setData({
+    //   topList: resultArray
+    // })
   },
 
   //生命周期函数--监听页面初次渲染完成

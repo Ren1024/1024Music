@@ -1,10 +1,36 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/personal/personal",
+    "pages/index/index",
+    "pages/video/video"
   ],
   "window": {
     "navigationBarBackgroundColor": "#c20c0c",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "1024音乐"
+  },
+  "tabBar": {
+    "list": [
+    {
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "/static/images/tabBar/shouye.png",
+      "selectedIconPath": "/static/images/tabBar/shouye1.png"
+    },
+    {
+      "pagePath": "pages/video/video",
+      "text": "发现",
+      "iconPath": "/static/images/tabBar/faxian.png",
+      "selectedIconPath": "/static/images/tabBar/faxian1.png"
+    },
+    {
+      "pagePath": "pages/personal/personal",
+      "text": "我的",
+      "iconPath": "/static/images/tabBar/wode.png",
+      "selectedIconPath": "/static/images/tabBar/wode1.png"
+    }
+    ],
+    "color":"#666",
+    "selectedColor": "#f01313"
   }
 }
