@@ -1,2 +1,24 @@
 <!--pages/video/video.wxml-->
-<text>pages/video/video.wxml</text>
+<view class="videoContainer">
+  <!-- 搜索区 -->
+  <view class="header">
+    <image src="/static/images/video/video.jpg"></image>
+    <view class="search">搜索音乐</view>
+    <image src="/static/images/logo.png"></image>
+  </view>
+  <!-- 导航标题 -->
+  <scroll-view class="scrollTitle" scroll-x enable-flex>
+    <view 
+      class="scrollItem {{currentId === item.id ? 'active' : ''}}" 
+      wx:for="{{navList}}" 
+      wx:key="id"
+      bindtap="currentTitle"
+      id="{{item.id}}"
+    >
+      <view class="scrollText">{{item.name}}</view>
+    </view>
+
+  </scroll-view>
+
+  <!-- 视频列表 -->
+</view>

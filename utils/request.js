@@ -18,8 +18,15 @@ export default function(url, data={}, method='GET'){
       url: config.host + url,
       data,
       method,
+      header: {
+        cookie: wx.getStorageSync('COOKIES').toString() || ''
+      },
       success: (res) => {
-        // console.log('成功',res.data);
+        // console.log('成功',res);
+        if(data.isLogin){
+          // 储存cookie信息
+          wx.setStorageSync('COOKIES', res.cookies)
+        }
         resolve(res.data)
       },
       fail: (err) => {

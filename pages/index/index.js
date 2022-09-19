@@ -29,19 +29,22 @@ Page({
     })
 
     // 请求获取排行榜数据
-    let index = 0
     let resultArray = []
-    while(index < 5){
-      result = await request('/top/list',{idx: index++})
-      resultArray.push({
-        name: result.playlist.name,
-        tracks: result.playlist.tracks.slice(0,3)
-      })
+    result = await request('/toplist/detail')
+    // console.log(result);
+    // resultArray.push()
+    resultArray = result.list.slice(0, 5).map(item => {
+      return {
+        name:item.name,
+        tracks:item.tracks,
+        coverImgUrl:item.coverImgUrl
+      }
+    })
+    console.log(resultArray);
       // 循环内跟新。初次渲染事件短，但多次渲染页面，影响性能
       this.setData({
         topList: resultArray
       })
-    }
     // console.log(resultArray);
     // 外部更新，渲染次数少，但网络不好，初次渲染事件有可能白屏
     // this.setData({

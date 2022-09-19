@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+import request from '../../utils/request'
 // 声明变量计算手指移动
 let startY = 0  //手指开始的坐标
 let moveY = 0   //手指移动的实时坐标
@@ -11,13 +12,25 @@ Page({
   data: {
     coverTranslateY: 'translateY(0)',
     coverTransition: '',
+    userInfo: {},
+    recentPlayList:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 读取本地信息
+    let userInfo = wx.getStorageSync('USERINFO')
+    // 判断用户是否登录
+    if(userInfo.nickname){
+      // 更新用户信息
+      this.setData({
+        userInfo
+      })
+      // 获取用户最近播放信息
+      this.getRecentPlayData(this.data.userInfo.userId)
+    }
   },
 
   /**
@@ -27,6 +40,17 @@ Page({
 
   },
 
+  // 获取用户最近播放记录的回调
+  async getRecentPlayData(userId){
+    let index = 0
+    let result = await request('/user/record',{uid: userId, type: 0})
+    this.setData({
+      recentPlayList: result.allData.slice(0, 10).map(item => {
+        item.id = index++
+        return item
+      })
+    })
+  },
 
   // 手指点击开始
   handleTouchStart(event){
@@ -68,6 +92,10 @@ Page({
 
   // 跳转登录页
   toLogin(){
+    // 判断是否登录
+    if(this.data.userInfo.nickName){
+      return
+    }
     wx.navigateTo({
       url: '/pages/login/login',
     })

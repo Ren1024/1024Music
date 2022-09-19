@@ -212,3 +212,17 @@
 .cardList .card-item .more {
   float: right;
 }
+
+/* 最近播放记录 */
+.recentPlayScroll {
+  display: flex;
+  height: 200rpx;
+}
+.scrollItem {
+  margin-right: 20rpx;
+}
+.scrollItem image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}

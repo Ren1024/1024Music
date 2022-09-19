@@ -1,1 +1,40 @@
 /* pages/video/video.wxss */
+.videoContainer .header {
+  display: flex;
+  padding: 20rpx;
+}
+.header image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.header .search {
+  flex: 1;
+  border: 1rpx solid #eee;
+  margin: 0 20rpx;
+  color: #f01313;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+}
+
+/* 滑动标题 */
+.scrollTitle {
+  display: flex;
+  white-space: nowrap;
+  height: 60rpx;
+}
+.scrollTitle .scrollItem {
+  /* padding: 0 30rpx; */
+  margin: 0 30rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+
+}
+.scrollItem .scrollText {
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.active {
+  border-bottom: 1rpx solid #f01313;
+}

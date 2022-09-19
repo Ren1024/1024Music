@@ -1,5 +1,6 @@
 // pages/login/login.js
 import request from '../../utils/request'
+
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     phone: '',
-    password: ''
+    password: '',
+    // userInfo: {}
   },
 
   /**
@@ -27,7 +29,7 @@ Page({
   },
 
   // 登录回调
-  login(){
+  async login(){
     // 收集数据
     let {phone, password} = this.data
     // 前端验证
@@ -55,7 +57,28 @@ Page({
       })
     }
     // 后台验证
-    let result = request('/login/cellphone',{phone,password})
+    let result = await request('/login/cellphone',{phone, password, isLogin:true})
+    if(result.code === 200){
+      wx.showToast({
+        title: '登录成功',
+        icon: 'success'
+      })
+      // 保存用户信息到本地
+      wx.setStorageSync('USERINFO', result.profile)
+      // 跳转回个人中心页
+      this.time = setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/personal/personal',
+        })
+      },1000)
+    }else {
+      wx.showToast({
+        title: result.message,
+        icon: 'error'
+      })
+    }
+    // 更新信息
+    // console.log(result);
 
   },
 
@@ -84,7 +107,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    clearTimeout(this.time)
+    this.time = null
   },
 
   /**
