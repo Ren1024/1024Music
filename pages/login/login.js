@@ -64,7 +64,9 @@ Page({
         icon: 'success'
       })
       // 保存用户信息到本地
+      // console.log(result);
       wx.setStorageSync('USERINFO', result.profile)
+      // wx.setStorageSync('COOKIE', result.cookie)
       // 跳转回个人中心页
       this.time = setTimeout(() => {
         wx.reLaunch({

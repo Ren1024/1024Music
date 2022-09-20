@@ -19,7 +19,7 @@ export default function(url, data={}, method='GET'){
       data,
       method,
       header: {
-        cookie: wx.getStorageSync('COOKIES').toString() || ''
+        cookie: wx.getStorageSync('COOKIES') ? wx.getStorageSync('COOKIES').find(item => item.indexOf('MUSIC_U') !== -1) : ''
       },
       success: (res) => {
         // console.log('成功',res);
