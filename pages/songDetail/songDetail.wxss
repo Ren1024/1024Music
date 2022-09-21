@@ -3,3 +3,72 @@
   height: 100%;
   background: rgba(0,0,0,.5);
 }
+
+.songAnimate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.songAnimate .circle {
+  position: relative;
+  z-index: 100;
+  width: 80rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50%;
+}
+/* 摇杆 */
+ .needle {
+  position: relative;
+  top: -45rpx;
+  left: 62rpx;
+  z-index: 90;
+  width: 218rpx;
+  height: 317rpx;
+  /* 旋转中心点设置 */
+  transform-origin: 20rpx 0;
+  transform: rotate(-20deg);
+  /* 过度 */
+  transition: transform 1s linear;
+}
+.needleRotate {
+  transform: rotate(0deg);
+}
+
+/* 磁盘 */
+.discContainer {
+  position: relative;
+  top: -200rpx;
+  width: 496rpx;
+  height: 496rpx;
+}
+
+.discRotate {
+  animation: discAnimation 3s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes discAnimation {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.discContainer .disc {
+  width: 100%;
+  height: 100%;
+}
+.discContainer .musicImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+}

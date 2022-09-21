@@ -1,11 +1,10 @@
 // pages/songDetail/songDetail.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    isPlay: false, //标记是否播放，旋转
   },
 
   /**
