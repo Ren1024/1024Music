@@ -7,13 +7,19 @@
     <image src="/static/images/logo.png"></image>
   </view>
   <!-- 导航标题 -->
-  <scroll-view class="scrollTitle" scroll-x enable-flex>
+  <scroll-view 
+    class="scrollTitle" 
+    scroll-x 
+    enable-flex
+    scroll-into-view="{{'nav' + currentId}}"
+    scroll-with-animation
+  >
     <view 
       class="scrollItem {{currentId === item.id ? 'active' : ''}}" 
       wx:for="{{navList}}" 
       wx:key="id"
       bindtap="currentTitle"
-      id="{{item.id}}"
+      id="{{'nav' + item.id}}"
     >
       <view class="scrollText">{{item.name}}</view>
     </view>
@@ -21,7 +27,14 @@
   </scroll-view>
 
   <!-- 视频列表 -->
-  <scroll-view class="videoScroll" scroll-y>
+  <scroll-view 
+    class="videoScroll" 
+    scroll-y
+    refresher-enabled
+    bindrefresherrefresh="hindleRefresh"
+    refresher-triggered="{{isTriggered}}"
+    bindscrolltolower="handleTolower"
+  >
     <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
       <video 
         src="{{item.data.urlInfo.url}}"
@@ -31,6 +44,7 @@
         class="common"
         wx:if="{{videoId === item.data.vid}}"
         bindtimeupdate="handleUpdateTime"
+        bindended="handleEnded"
       ></video>
       <image 
         wx:else 
@@ -47,15 +61,15 @@
         <text class="nickName">{{item.data.creator.nickname}}</text>
         <view class="comments_praised">
           <text class="item">
-            <text class="iconfont icon-buoumaotubiao15"></text>
+            <text class="iconfont icon-shoucang"></text>
             <text class="count">{{item.data.praisedCount}}</text>
           </text>
           <text class="item">
-            <text class="iconfont icon-pinglun1"></text>
+            <text class="iconfont icon-pinglun"></text>
             <text class="count">{{item.data.commentCount}}</text>
           </text>
           <button open-type="share" class="item btn">
-            <text class="iconfont icon-gengduo"></text>
+            <text class="iconfont icon-gengduo-shuxiang"></text>
           </button>
         </view>
       </view>

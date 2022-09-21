@@ -22,6 +22,7 @@
   display: flex;
   white-space: nowrap;
   height: 60rpx;
+  padding: 0 20rpx;
 }
 .scrollTitle .scrollItem {
   /* padding: 0 30rpx; */
@@ -40,6 +41,8 @@
 }
 .videoScroll {
  margin-top: 20rpx;
+ /* calc是css3计算，vh和vw是视口单位，1vw代表1%视口宽度 */
+ height: calc(100vh - 184rpx);
 }
 .videoItem {
   padding: 0 3%;

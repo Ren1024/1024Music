@@ -1,0 +1,30 @@
+<view class="recommendContainer">
+  <!-- 头部区域 -->
+  <view class="header">
+    <image src="/static/images/recommendSong/recommendSong.jpg"></image>
+    <view class="date">
+      <text class="day">{{day}} /</text>
+      <text class="month"> {{month}}</text>
+    </view>
+  </view>
+
+  <!-- 内容区 -->
+  <view class="recommendSong">
+    <view class="title">
+      <text class="playAll">播放全部</text>
+      <text class="check">多选</text>
+    </view>
+
+    <!-- 推荐歌曲列表 -->
+    <scroll-view class="listScroll" scroll-y>
+      <view class="listItem" wx:for="{{daliySongs}}" wx:key="id">
+        <image src="{{item.al.picUrl}}"></image>
+        <view class="song">
+          <text>{{item.name}}</text>
+          <text>{{item.ar[0].name}}</text>
+        </view>
+        <view class="iconfont icon-gengduo-shuxiang"></view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
