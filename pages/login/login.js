@@ -53,9 +53,37 @@ Page({
         title: '密码不能为空',
         icon: 'error'
       })
+      return 
     }
     // 后台验证
-    let result = request('/login/cellphone',{phone,password})
+    // let result = request('/login/cellphone',{phone,password})
+    // 后台接口错误，改用用户授权
+    
+    wx.getUserProfile({
+      desc: '获取用户信息',
+      success: (res) => {
+        // console.log('成功', res);
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success'
+        })
+        // 添加用户userId，用于获取最近播放列表
+        res.userInfo.userId = 2081801144
+        wx.setStorageSync('USERINFO', res.userInfo)
+        this.time = setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/personal/personal',
+          })
+        },1000)
+      },
+      fail: (err) => {
+        // console.log('失败', err);
+        wx.showToast({
+          title: '登录失败',
+          icon: 'error'
+        })
+      }
+    })
 
   },
 
@@ -84,7 +112,8 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    clearTimeout(this.time)
+    this.time = null
   },
 
   /**

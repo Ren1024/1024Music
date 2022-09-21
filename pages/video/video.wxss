@@ -1,1 +1,39 @@
 /* pages/video/video.wxss */
+.videoContainer .header {
+  display: flex;
+  height: 60rpx;
+  padding: 20rpx;
+}
+.header .search {
+  flex: 1;
+  border: 1rpx solid #ddd;
+  text-align: center;
+  line-height: 60rpx;
+  margin: 0 20rpx;
+  font-size: 24rpx;
+  color: #f01313;
+}
+.header image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.scrollTitle {
+  display: flex;
+  white-space: nowrap;
+  height: 60rpx;
+  margin-top: 20rpx;
+}
+.scrollTitle .scollItem {
+  margin: 0 30rpx;
+  height: 60rpx;
+}
+.scollItem .scrollText {
+  box-sizing: border-box;
+  height: 60rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.active {
+  border-bottom: 1rpx solid #f01313;
+}

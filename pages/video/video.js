@@ -1,18 +1,42 @@
 // pages/video/video.js
+import request from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    videoGroupList:[], //视频标签列表
+    currentId:'', //选中的标题id
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getVideoGroupList()
+  },
 
+  // 获取视频标签列表
+  async getVideoGroupList(){
+    let result = await request('/video/group/list')
+    // 更新videoGroupList数据
+    this.setData({
+      videoGroupList: result.data.slice(0, 14),
+      // 更新选中标题
+      currentId: result.data[0].id
+    })
+  },
+
+  // 选中标题
+  currentText(event){
+    // 获取选中的id值
+    let currentId = event.currentTarget.id
+    // console.log(event);
+    this.setData({
+      // 右移运算符，（转化为二级制，向右移动两位，）强制类型数据转换为number类型
+      currentId: currentId >>> 0
+    })
   },
 
   /**

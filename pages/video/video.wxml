@@ -1,2 +1,21 @@
 <!--pages/video/video.wxml-->
-<text>pages/video/video.wxml</text>
+<view class="videoContainer">
+  <!-- 头部区 -->
+  <view class="header">
+    <image src="/static/images/video/video.jpg"></image>
+    <view class="search">搜索视频</view>
+    <image src="/static/images/logo.png"></image>
+  </view>
+  <!-- 滑动标题 -->
+  <scroll-view class="scrollTitle" enable-flex scroll-x>
+    <view class="scollItem" wx:for="{{videoGroupList}}" wx:key="id">
+      <view 
+        class="scrollText {{currentId === item.id ? 'active' : ''}}" 
+        bindtap="currentText" 
+        id="{{item.id}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
