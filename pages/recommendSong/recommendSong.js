@@ -32,6 +32,16 @@ Page({
     })
   },
 
+  // 跳转到songDetail
+  toSongDetail(event){
+    let song = event.currentTarget.dataset.song
+    let musicId = event.currentTarget.dataset.id
+    wx.navigateTo({
+      // url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
+      url: '/pages/songDetail/songDetail?musicId=' + musicId,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

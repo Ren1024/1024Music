@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/songDetail/songDetail",
     "pages/recommendSong/recommendSong",
+    "pages/songDetail/songDetail",
     "pages/personal/personal",
     "pages/video/video",
     "pages/login/login",
@@ -35,5 +35,6 @@
     ],
     "color": "#666",
     "selectedColor": "#f01313"
-  }
+  },
+  "requiredBackgroundModes": ["audio", "location"]
 }

@@ -17,7 +17,14 @@
 
     <!-- 推荐歌曲列表 -->
     <scroll-view class="listScroll" scroll-y>
-      <view class="listItem" wx:for="{{daliySongs}}" wx:key="id">
+      <view 
+        class="listItem" 
+        wx:for="{{daliySongs}}" 
+        wx:key="id"
+        bindtap="toSongDetail"
+        data-song="{{item}}"
+        data-id="{{item.id}}"
+      >
         <image src="{{item.al.picUrl}}"></image>
         <view class="song">
           <text>{{item.name}}</text>
