@@ -1,4 +1,5 @@
-// pages/recommendSong/recommendSong.js
+import PubSub from 'pubsub-js'
+
 import request from '../../utils/request'
 Page({
   /**
@@ -8,6 +9,7 @@ Page({
     day:'',
     month:'',
     daliySongs:[],  //每日推荐歌曲
+    index:'',  //当前歌曲的索引
   },
 
   /**
@@ -21,6 +23,25 @@ Page({
     })
     // 初始化每日推荐歌曲
     this.getDaliySong()
+
+    // 订阅者，接收切换类型
+    PubSub.subscribe('switchType', (msg, switchType) => {
+      // 获取歌曲列表
+      let {daliySongs, index} = this.data
+      if(switchType === 'pre'){//上一页
+        (index === 0) && (index = daliySongs.length)
+        index -= 1
+      }else {//下一页
+        (index === daliySongs.length - 1) && (index = -1)
+        index += 1
+      }
+      // 根据索引查找需要的音乐的id
+      let musicId = daliySongs[index].id
+      // 更新数据
+      this.setData({index})
+      // 发布消息，
+      PubSub.publish('musicId', musicId)
+    })
   },
 
   // 获取每日推荐歌曲daliySongs
@@ -34,11 +55,14 @@ Page({
 
   // 跳转到songDetail
   toSongDetail(event){
-    let song = event.currentTarget.dataset.song
-    let musicId = event.currentTarget.dataset.id
+    // let song = event.currentTarget.dataset.song
+    // let musicId = event.currentTarget.dataset.id
+    let {song, id, index} = event.currentTarget.dataset
+    // 更新index数据
+    this.setData({index})
     wx.navigateTo({
       // url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
-      url: '/pages/songDetail/songDetail?musicId=' + musicId,
+      url: '/pages/songDetail/songDetail?musicId=' + id,
     })
   },
 

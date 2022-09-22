@@ -14,11 +14,19 @@
   <view class="musicControl">
     <text class="iconfont icon-24gl-shuffle"></text>
 
-    <text class="iconfont icon-24gl-previous" id="pre" ></text>
+    <text 
+      class="iconfont icon-24gl-previous" 
+      id="pre" 
+      bindtap="switchMusic"
+    ></text>
 
     <text class="iconfont {{isPlay?'icon-24gl-pauseCircle': 'icon-24gl-playCircle'}} big" bindtap="handleMusicPlay"></text>
 
-    <text class="iconfont icon-24gl-next" id="next" ></text>
+    <text 
+      class="iconfont icon-24gl-next" 
+      id="next" 
+      bindtap="switchMusic"
+    ></text>
 
     <text class="iconfont icon-24gl-playlistMusic4"></text>
   </view>

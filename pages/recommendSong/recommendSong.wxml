@@ -24,6 +24,7 @@
         bindtap="toSongDetail"
         data-song="{{item}}"
         data-id="{{item.id}}"
+        data-index="{{index}}"
       >
         <image src="{{item.al.picUrl}}"></image>
         <view class="song">

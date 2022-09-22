@@ -1,4 +1,5 @@
-// pages/songDetail/songDetail.js
+import PubSub from 'pubsub-js'
+
 import request from '../../utils/request'
 // 生命全局app对象
 let globalApp = getApp()
@@ -45,6 +46,14 @@ Page({
     })
     this.backgroundAudioManager.onStop(() => {
       this.changeMusicIsPlay(false)
+    })
+
+    // 订阅消息，获取musicId
+    PubSub.subscribe('musicId', (msg, musicId) => {
+      this.getMusicInfo(musicId)
+
+      // 自动播放最新的音乐
+      this.playOrPauseMusic(true, musicId)
     })
   },
 
@@ -96,6 +105,13 @@ Page({
       // globalApp.globalData.isMusicPlay = false
       // globalApp.globalData.musicId = musicId
     }
+  },
+
+  // 切换歌曲
+  switchMusic(event){
+    let type = event.currentTarget.id
+    // 发布者，切换歌曲
+    PubSub.publish('switchType', type)
   },
 
   /**
