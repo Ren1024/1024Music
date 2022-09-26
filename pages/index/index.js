@@ -52,6 +52,13 @@ Page({
     // })
   },
 
+  // 跳转到推荐歌曲页面
+  toRecommendSong(){
+    wx.navigateTo({
+      url: '/songPackages/pages/recommendSong/recommendSong',
+    })
+  },
+
   //生命周期函数--监听页面初次渲染完成
   onReady() {
 

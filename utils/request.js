@@ -15,7 +15,8 @@ import config from './config'
 export default function(url, data={}, method='GET'){
   return new Promise((resolve, reject) => {
     wx.request({
-      url: config.host + url,
+      url: config.host + url, //内网地址
+      // url: config.mobileHost + url, //外网地址
       data,
       method,
       header: {

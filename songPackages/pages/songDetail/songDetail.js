@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js'
 import moment from 'moment'
-import request from '../../utils/request'
+import request from '../../../utils/request'
 // 生命全局app对象
 let globalApp = getApp()
 Page({

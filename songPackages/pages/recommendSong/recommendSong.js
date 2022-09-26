@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js'
 
-import request from '../../utils/request'
+import request from '../../../utils/request'
 Page({
   /**
    * 页面的初始数据
@@ -62,7 +62,7 @@ Page({
     this.setData({index})
     wx.navigateTo({
       // url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
-      url: '/pages/songDetail/songDetail?musicId=' + id,
+      url: '/songPackages/pages/songDetail/songDetail?musicId=' + id,
     })
   },
 
