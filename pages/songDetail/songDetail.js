@@ -1,5 +1,5 @@
 import PubSub from 'pubsub-js'
-
+import moment from 'moment'
 import request from '../../utils/request'
 // 生命全局app对象
 let globalApp = getApp()
@@ -11,6 +11,10 @@ Page({
     isPlay: false, //标记是否播放，旋转
     song:{},  //音乐详情
     musicId:'',  //音乐的id
+    musicLink: '', //音乐链接
+    currentTime: '00:00', //音乐播放时长
+    duration: '00:00',  //音乐总时长
+    progressWidth: '0', //实时进度条长度
   },
 
   /**
@@ -26,6 +30,7 @@ Page({
     this.setData({
       musicId
     })
+    // 获取音乐详情
     this.getMusicInfo(musicId)
     // 判断当前音乐是否在播放
     if(globalApp.globalData.isMusicPlay && globalApp.globalData.musicId === musicId){
@@ -46,6 +51,17 @@ Page({
     })
     this.backgroundAudioManager.onStop(() => {
       this.changeMusicIsPlay(false)
+    })
+    // 监听音乐播放的时长
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      // console.log('duration',this.backgroundAudioManager.duration);
+      // console.log('currentTime',this.backgroundAudioManager.currentTime);
+      let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss')
+      let progressWidth = this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 440
+      this.setData({
+        currentTime,
+        progressWidth
+      })
     })
 
     // 订阅消息，获取musicId
@@ -71,17 +87,19 @@ Page({
     this.setData({
       isPlay
     })
-    let {musicId} = this.data
-    this.playOrPauseMusic(isPlay, musicId)
+    let {musicId, musicLink} = this.data
+    this.playOrPauseMusic(isPlay, musicId, musicLink)
   },
 
   // 发请求获取音乐详情信息
   async getMusicInfo(musicId){
     let songData = await request('/song/detail',{ids: musicId})
+    let duration = moment(songData.songs[0].dt).format('mm:ss')
     // console.log(songData);
     // 更新数据
     this.setData({
-      song: songData.songs[0]
+      song: songData.songs[0],
+      duration
     })
     // 动态设置navtitle
     wx.setNavigationBarTitle({
@@ -89,13 +107,22 @@ Page({
     })
   },
 
+  
   // 实现播放或暂停音乐的功能函数
-  async playOrPauseMusic(isPlay,musicId){
+  async playOrPauseMusic(isPlay, musicId, musicLink){
+    // debugger
     if(isPlay){//播放音乐
-      // 获取音乐播放地址
-      let musicUrlData = await request('/song/url/v1',{id: musicId, level: 'exhigh'})
-      let musicUrl = musicUrlData.data[0].url 
-      this.backgroundAudioManager.src = musicUrl
+      // 播放暂停携带musicLink，切歌不携带，优化请求次数
+      // debugger
+      if(!musicLink){
+        // 获取音乐播放地址
+        let musicUrlData = await request('/song/url/v1',{id: musicId, level: 'exhigh'})
+        musicLink = musicUrlData.data[0].url 
+        // 更新到data
+        this.setData({musicLink})
+      }
+      // debugger
+      this.backgroundAudioManager.src = musicLink
       this.backgroundAudioManager.title = this.data.song.name
       // 把播放状态记录到全局对象
       // globalApp.globalData.isMusicPlay = true

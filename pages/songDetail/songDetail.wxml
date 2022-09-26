@@ -9,6 +9,20 @@
     </view>
   </view>
 
+  <!-- 进度条区域 -->
+  <view class="progressCotainer">
+    <view class="currentTime">{{currentTime}}</view>
+    <view class="progress">
+      <!-- 实时进度条 -->
+      <view class="currentProgress" style="width: {{progressWidth + 'rpx'}};">
+        <!-- 小圆点 -->
+        <view class="musicCircle"></view>
+      </view>
+    </view>
+    <view class="duration">{{duration}}</view>
+  </view>
+
+
 
   <!-- 底部控制播放区域 -->
   <view class="musicControl">
